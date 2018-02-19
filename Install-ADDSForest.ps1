@@ -1,0 +1,1 @@
+Install-ADDSForest -Force -DatabasePath "C:\ADDS\NTDS" -DomainName "hogehoge.localdomain" -LogPath "C:\ADDS\NTDS" -DomainMode "Win2012R2" -SafeModeAdministratorPassword (ConvertTo-SecureString -AsPlainText -Force -String "HOGEhoge1") -ForestMode "Win2012R2" -SysvolPath "C:\ADDS\SYSVOL"

@@ -1,0 +1,19 @@
+---
+- hosts: winserver
+  gather_facts: no
+  vars:
+    ad_opts:
+      DomainName: hogehoge.localdomain
+      DomainMode: Win2012R2
+      ForestMode: Win2012R2
+      SafeModeAdministratorPassword: HOGEhoge1
+      DatabasePath: 'C:\ADDS\NTDS'
+      LogPath: 'C:\ADDS\NTDS'
+      SysvolPath: 'C:\ADDS\SYSVOL'
+  tasks:
+    - win_feature:
+        name: AD-Domain-Services
+        include_management_tools: yes
+    - raw: 'netsh advfirewall firewall add rule Profile=domain name="Allow WinRM HTTPS" d=in localport=5986 protocol=TCP action=allow'
+    - local_action: template src=files/Install-ADDSForest.ps1.j2 dest=./Install-ADDSForest.ps1
+    - script: 'Install-ADDSForest.ps1'

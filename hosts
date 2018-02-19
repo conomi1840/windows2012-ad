@@ -1,0 +1,9 @@
+[winserver]
+192.168.215.173
+
+[winserver:vars]
+ansible_ssh_user=Administrator
+ansible_ssh_pass=1Qazxsw2
+ansible_ssh_port=5986
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore
